@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- CSS خارجي -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <h2 class="logo">Welome To My<span>Portfolio</span></h2>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#skills">My Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact Me</a></li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<header id="home">
+    <div class="hero">
+        <div class="text">
+            <h1>Hello, I'm <span>Ahmd</span></h1>
+            <p>Front-End Developer</p>
+            <button onclick="scrollToContact()">Contact Me</button>
+        </div>
+    </div>
+</header>
+
+<!-- About -->
+<section id="about" class="about">
+    <h2>About Me</h2>
+    <p class="about-text">
+        I am a 20-year-old second-year Computer Science student and a Front-End Developer. I have a strong passion for creating professional and responsive websites. I enjoy transforming creative ideas into modern, interactive web pages while continuously learning new technologies to improve my skills and deliver high-quality projects.
+    </p>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="skills">
+    <h2>My Skills</h2>
+    <div class="skill-box">
+        <div>HTML</div>
+        <div>CSS</div>
+        <div>JavaScript</div>
+        <div>Responsive Design</div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-box">
+        <div class="card">Landing Page</div>
+        <div class="card">Portfolio Website</div>
+        <div class="card">E-commerce UI</div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <p>Email: ahmedsoinc1@gmail.com</p>
+    <p>Phone: 01099821783</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 All Rights Reserved</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+// Scroll Animations
+const observerOptions = {
+    threshold: 0.2
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        } else {
+            entry.target.classList.remove('visible');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('section, .skill-box div, .project-box .card').forEach(el => {
+    observer.observe(el);
+});
+
+// Typing animation for About Me
+const aboutText = document.querySelector('.about-text');
+let text = aboutText.textContent;
+aboutText.textContent = '';
+let index = 0;
+
+function typeAbout() {
+    if(index < text.length){
+        aboutText.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeAbout, 20); // سرعة ظهور النص (20ms لكل حرف)
+    }
+}
+
+// Observer خاص بالـ About Text
+const aboutObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            typeAbout();
+            aboutObserver.unobserve(entry.target); // تشغيل مرة واحدة فقط
+        }
+    });
+}, {threshold: 0.5});
+
+aboutObserver.observe(aboutText);
+
+// Scroll to contact
+function scrollToContact() {
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>
