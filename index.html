@@ -6,14 +6,14 @@
     <title>My Portfolio</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <!-- CSS خارجي -->
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- Navbar -->
 <nav>
-    <h2 class="logo">Welome To My<span>Portfolio</span></h2>
+    <h2 class="logo">Welcome To My <span>Portfolio</span></h2>
     <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About Me</a></li>
@@ -26,11 +26,9 @@
 <!-- Header -->
 <header id="home">
     <div class="hero">
-        <div class="text">
-            <h1>Hello, I'm <span>Ahmd</span></h1>
-            <p>Front-End Developer</p>
-            <button onclick="scrollToContact()">Contact Me</button>
-        </div>
+        <h1>Hello, I'm <span>Ahmd</span></h1>
+        <p>Front-End Developer</p>
+        <button onclick="scrollToContact()">Contact Me</button>
     </div>
 </header>
 
@@ -38,7 +36,7 @@
 <section id="about" class="about">
     <h2>About Me</h2>
     <p class="about-text">
-        I am a 20-year-old second-year Computer Science student and a Front-End Developer. I have a strong passion for creating professional and responsive websites. I enjoy transforming creative ideas into modern, interactive web pages while continuously learning new technologies to improve my skills and deliver high-quality projects.
+        I am a 20-year-old second-year Computer Science student and a passionate Front-End Developer. I specialize in creating responsive and modern websites that are both visually appealing and highly functional. My journey in web development has equipped me with a strong foundation in HTML, CSS, and JavaScript, and I continuously explore new technologies to enhance my skills. I enjoy transforming creative ideas into interactive web experiences while maintaining clean, maintainable code. My goal is to deliver high-quality projects that meet client needs and provide seamless user experiences across all devices.
     </p>
 </section>
 
@@ -75,13 +73,10 @@
     <p>© 2026 All Rights Reserved</p>
 </footer>
 
-<!-- JavaScript -->
+<!-- JS -->
 <script>
 // Scroll Animations
-const observerOptions = {
-    threshold: 0.2
-};
-
+const observerOptions = { threshold: 0.2 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
@@ -106,16 +101,16 @@ function typeAbout() {
     if(index < text.length){
         aboutText.textContent += text.charAt(index);
         index++;
-        setTimeout(typeAbout, 20); // سرعة ظهور النص (20ms لكل حرف)
+        setTimeout(typeAbout, 20);
     }
 }
 
-// Observer خاص بالـ About Text
+// About section observer
 const aboutObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
             typeAbout();
-            aboutObserver.unobserve(entry.target); // تشغيل مرة واحدة فقط
+            aboutObserver.unobserve(entry.target);
         }
     });
 }, {threshold: 0.5});
@@ -126,6 +121,19 @@ aboutObserver.observe(aboutText);
 function scrollToContact() {
     document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
 }
+
+// Navbar hide/show on scroll for mobile
+let lastScroll = 0;
+const navbar = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if(currentScroll > lastScroll && currentScroll > 100) {
+        navbar.classList.add('hide');
+    } else {
+        navbar.classList.remove('hide');
+    }
+    lastScroll = currentScroll;
+});
 </script>
 
 </body>

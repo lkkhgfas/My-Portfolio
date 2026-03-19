@@ -1,6 +1,4 @@
-/* ==========================
-   Reset & Global
-========================== */
+/* Reset & Global */
 * {
     margin: 0;
     padding: 0;
@@ -14,264 +12,165 @@ body {
     color: white;
 }
 
-/* ==========================
-   Navbar
-========================== */
+/* Navbar */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 60px;
     position: fixed;
     width: 100%;
     top: 0;
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(10px);
+    left: 0;
     z-index: 1000;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1.5% 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: top 0.4s ease;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+nav.hide {
+    top: -100px;
 }
 
-.logo span {
-    color: #38bdf8;
-}
+.logo { font-size: 2vw; font-weight: bold; }
+.logo span { color: #38bdf8; }
 
 ul {
     display: flex;
     list-style: none;
 }
-
-ul li {
-    margin-left: 25px;
-}
-
+ul li { margin-left: 2vw; }
 ul li a {
     color: white;
     text-decoration: none;
     position: relative;
+    font-size: 1.2vw;
     transition: 0.3s;
 }
-
 ul li a::after {
     content: "";
     width: 0;
-    height: 2px;
+    height: 0.2vh;
     background: #38bdf8;
     position: absolute;
     left: 0;
     bottom: -5px;
     transition: 0.3s;
 }
+ul li a:hover::after { width: 100%; }
 
-ul li a:hover::after {
-    width: 100%;
-}
-
-/* ==========================
-   Header / Hero
-========================== */
+/* Header / Hero */
 header {
+    position: relative;
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085") center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("https://images.unsplash.com/photo-1498050108023-c5249f4df085") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
     animation: zoomBg 8s ease-in-out infinite alternate;
 }
-
 .hero {
+    width: 90%;
+    max-width: 1000px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
     flex-direction: column;
-    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2%;
 }
-
-.hero h1 {
-    font-size: 50px;
-    opacity: 0;
-    animation: fadeDown 1s ease forwards;
-}
-
-.hero h1 span {
-    color: #38bdf8;
-}
-
+.hero h1 { font-size: 5vw; opacity: 0; animation: fadeDown 1s ease forwards; }
+.hero h1 span { color: #38bdf8; }
 .hero p {
-    margin-top: 10px;
-    font-size: 20px;
+    margin-top: 1vh;
+    font-size: 2vw;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid #38bdf8;
+    border-right: 0.3vw solid #38bdf8;
     width: 0;
     animation: typing 3s steps(25) forwards, blink 0.7s infinite;
 }
-
 button {
-    margin-top: 20px;
-    padding: 12px 25px;
+    margin-top: 2vh;
+    padding: 1vh 2vw;
     border: none;
     background: #38bdf8;
     color: black;
     cursor: pointer;
-    border-radius: 25px;
+    border-radius: 2vw;
     transition: 0.3s;
     opacity: 0;
     animation: fadeUp 1s ease forwards;
     animation-delay: 2s;
 }
+button:hover { background: #0ea5e9; transform: scale(1.05); }
 
-button:hover {
-    background: #0ea5e9;
-    transform: scale(1.1);
-}
-
-/* ==========================
-   Sections
-========================== */
+/* Sections */
 section {
-    padding: 100px 60px;
+    padding: 10vh 5%;
     text-align: center;
 }
-
-section h2 {
-    font-size: 35px;
-    margin-bottom: 20px;
-}
+section h2 { font-size: 3.5vw; margin-bottom: 2vh; }
 
 /* Skills & Projects */
 .skill-box,
-.project-box {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
+.project-box { display: flex; justify-content: center; gap: 2vw; flex-wrap: wrap; margin-top: 2vh; }
 .skill-box div,
 .project-box .card {
     background: #1e293b;
-    padding: 25px;
-    border-radius: 15px;
-    width: 150px;
+    padding: 2vh 1.5vw;
+    border-radius: 1.5vw;
+    min-width: 120px;
+    width: 15vw;
+    max-width: 200px;
     cursor: pointer;
     transition: transform 0.3s, background 0.3s, color 0.3s;
 }
-
 .skill-box div:hover,
-.project-box .card:hover {
-    transform: translateY(-10px) scale(1.05);
-    background: #38bdf8;
-    color: black;
-}
+.project-box .card:hover { transform: translateY(-1vh) scale(1.05); background: #38bdf8; color: black; }
 
 /* Scroll Animation */
 section, .skill-box div, .project-box .card {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: translateY(4vh) scale(0.95);
     transition: all 0.8s ease-out;
 }
-
 section.visible, .skill-box div.visible, .project-box .card.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
 /* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #020617;
-}
+footer { text-align: center; padding: 2vh 0; font-size: 1.2vw; background: #020617; }
 
-/* ==========================
-   Animations
-========================== */
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* Animations */
+@keyframes fadeDown { from { opacity:0; transform:translateY(-3vh);} to {opacity:1; transform:translateY(0);} }
+@keyframes fadeUp { from { opacity:0; transform:translateY(3vh);} to {opacity:1; transform:translateY(0);} }
+@keyframes zoomBg { 0%{background-size:100%;}100%{background-size:110%;} }
+@keyframes typing { from{width:0;} to{width:90%;} }
+@keyframes blink { 50%{border-color:transparent;} }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes zoomBg {
-    0% { background-size: 100%; }
-    100% { background-size: 110%; }
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 220px; }
-}
-
-@keyframes blink {
-    50% { border-color: transparent; }
-}
-
-/* ==========================
-   Responsive Media Queries
-========================== */
-
-/* Tablets */
+/* Responsive */
 @media (max-width: 992px) {
-    nav {
-        padding: 20px 40px;
-    }
-    ul li {
-        margin-left: 15px;
-    }
-    .hero h1 {
-        font-size: 40px;
-    }
-    .hero p {
-        font-size: 18px;
-    }
-    section {
-        padding: 80px 40px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 20px;
-    }
-    ul {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-    }
-    ul li {
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
-    .hero {
-        padding: 0 10px;
-    }
-    .hero h1 {
-        font-size: 28px;
-    }
-    .hero p {
-        font-size: 16px;
-    }
-    button {
-        padding: 10px 20px;
-    }
-    section {
-        padding: 60px 20px;
-    }
+    .hero h1 { font-size: 6vw; }
+    .hero p { font-size: 3vw; }
+    button { padding: 1.5vh 3vw; font-size: 3vw; }
+    section h2 { font-size: 5vw; }
     .skill-box div,
-    .project-box .card {
-        width: 100%;
-        max-width: 250px;
-    }
+    .project-box .card { width: 30vw; min-width: 140px; }
+}
+@media (max-width: 768px) {
+    nav { flex-direction: column; align-items: flex-start; padding: 2vh 4%; }
+    ul { flex-direction: column; width: 100%; margin-top: 1vh; }
+    ul li { margin-left: 0; margin-bottom: 1vh; }
+    header { height: 70vh; background-size:cover; background-position:center; }
+    .hero h1 { font-size: 8vw; }
+    .hero p { font-size: 4vw; white-space: normal; width: 90%; }
+    button { padding: 1.5vh 4vw; font-size: 4vw; }
+    section { padding: 8vh 4%; }
+    .skill-box div,
+    .project-box .card { width: 80%; max-width: 250px; }
+    nav.hide { top:-80px; }
 }
