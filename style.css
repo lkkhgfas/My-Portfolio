@@ -1,3 +1,6 @@
+/* ==========================
+   Reset & Global
+========================== */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +14,9 @@ body {
     color: white;
 }
 
-/* Navbar */
+/* ==========================
+   Navbar
+========================== */
 nav {
     display: flex;
     justify-content: space-between;
@@ -65,13 +70,13 @@ ul li a:hover::after {
     width: 100%;
 }
 
-/* Header */
+/* ==========================
+   Header / Hero
+========================== */
 header {
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085");
-    background-size: cover;
-    background-position: center;
+    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085") center/cover no-repeat;
     animation: zoomBg 8s ease-in-out infinite alternate;
 }
 
@@ -82,6 +87,7 @@ header {
     height: 100%;
     text-align: center;
     flex-direction: column;
+    padding: 0 20px;
 }
 
 .hero h1 {
@@ -123,7 +129,9 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* Sections */
+/* ==========================
+   Sections
+========================== */
 section {
     padding: 100px 60px;
     text-align: center;
@@ -144,19 +152,6 @@ section h2 {
     margin-top: 20px;
 }
 
-/* Scroll Animation initial state */
-section, .skill-box div, .project-box .card {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-    transition: all 0.8s ease-out;
-}
-
-/* Scroll Animation visible */
-section.visible, .skill-box div.visible, .project-box .card.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
 .skill-box div,
 .project-box .card {
     background: #1e293b;
@@ -174,13 +169,28 @@ section.visible, .skill-box div.visible, .project-box .card.visible {
     color: black;
 }
 
+/* Scroll Animation */
+section, .skill-box div, .project-box .card {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: all 0.8s ease-out;
+}
+
+section.visible, .skill-box div.visible, .project-box .card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 20px;
     background: #020617;
 }
 
-/* Keyframes */
+/* ==========================
+   Animations
+========================== */
 @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -203,4 +213,65 @@ footer {
 
 @keyframes blink {
     50% { border-color: transparent; }
+}
+
+/* ==========================
+   Responsive Media Queries
+========================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+    nav {
+        padding: 20px 40px;
+    }
+    ul li {
+        margin-left: 15px;
+    }
+    .hero h1 {
+        font-size: 40px;
+    }
+    .hero p {
+        font-size: 18px;
+    }
+    section {
+        padding: 80px 40px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+    ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+    ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+    .hero {
+        padding: 0 10px;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
+    .hero p {
+        font-size: 16px;
+    }
+    button {
+        padding: 10px 20px;
+    }
+    section {
+        padding: 60px 20px;
+    }
+    .skill-box div,
+    .project-box .card {
+        width: 100%;
+        max-width: 250px;
+    }
 }
